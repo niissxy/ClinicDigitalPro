@@ -23,24 +23,25 @@ export const ClinicDigitalProLogo: React.FC<LogoProps> = ({
         <defs>
           {/* Blue Gradient for D */}
           <linearGradient id="blueDGrad" x1="40" y1="16" x2="100" y2="84" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#1e88e5" /> {/* bright blue */}
-            <stop offset="50%" stopColor="#1565c0" /> {/* medium blue */}
-            <stop offset="100%" stopColor="#0d47a1" /> {/* dark blue */}
+            <stop offset="0%" stopColor="#006df0" /> {/* vibrant bright blue */}
+            <stop offset="50%" stopColor="#0551bc" /> {/* royal blue */}
+            <stop offset="100%" stopColor="#093c90" /> {/* deep rich royal blue */}
           </linearGradient>
           
           {/* Teal Gradient for Cross */}
           <linearGradient id="tealCrossGrad" x1="13" y1="34" x2="63" y2="84" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#00e5ff" /> {/* cyan */}
-            <stop offset="100%" stopColor="#00b0ff" /> {/* sky blue */}
+            <stop offset="0%" stopColor="#00f0ff" /> {/* luminous neon cyan */}
+            <stop offset="50%" stopColor="#00ceff" /> {/* sky cyan */}
+            <stop offset="100%" stopColor="#0099ff" /> {/* vibrant sky blue */}
           </linearGradient>
         </defs>
 
         {/* Small floating pixel squares on the top left */}
-        <rect x="30" y="8" width="5" height="5" rx="1.2" fill="#00e5ff" />
-        <rect x="15" y="20" width="7" height="7" rx="1.5" fill="#00b0ff" />
-        <rect x="33" y="22" width="6.5" height="6.5" rx="1.5" fill="#1565c0" />
-        <rect x="23" y="33" width="7.5" height="7.5" rx="1.5" fill="#00e5ff" />
-        <rect x="36" y="44" width="5" height="5" rx="1.2" fill="#00b0ff" />
+        <rect x="30" y="8" width="5" height="5" rx="1.2" fill="#00f0ff" />
+        <rect x="15" y="20" width="7" height="7" rx="1.5" fill="#00b8ff" />
+        <rect x="33" y="22" width="6.5" height="6.5" rx="1.5" fill="#0a4392" />
+        <rect x="23" y="33" width="7.5" height="7.5" rx="1.5" fill="#00f0ff" />
+        <rect x="36" y="44" width="5" height="5" rx="1.2" fill="#00ceff" />
 
         {/* Big 'D' letter shape */}
         <path 
