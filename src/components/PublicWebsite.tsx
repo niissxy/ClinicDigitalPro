@@ -20,8 +20,10 @@ import {
 import { THEME_PRESETS } from '../data/seedData';
 import { ClinicDigitalProLogo } from './Logo';
 
-const clinicDesktopDashboard = "/clinic_desktop_dashboard_new.jpg";
-const clinicMobileQuiz = "/clinic_mobile_quiz_new.jpg";
+// @ts-ignore
+import clinicDesktopDashboard from '../assets/images/clinic_desktop_dashboard_new_1783395793158.jpg';
+// @ts-ignore
+import clinicMobileQuiz from '../assets/images/clinic_mobile_quiz_new_1783395809176.jpg';
 
 interface PublicWebsiteProps {
   themeId: ClinicThemeId;
