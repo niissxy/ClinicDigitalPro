@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface LogoProps {
   className?: string;
@@ -11,6 +11,10 @@ export const ClinicDigitalProLogo: React.FC<LogoProps> = ({
   showText = true,
   variant = 'dark'
 }) => {
+  const uniqueId = useId();
+  const blueDGradId = `blueDGrad-${uniqueId.replace(/:/g, '')}`;
+  const tealCrossGradId = `tealCrossGrad-${uniqueId.replace(/:/g, '')}`;
+
   return (
     <div className={`flex items-center gap-2.5 select-none ${className}`}>
       {/* Logo Icon Mark */}
@@ -21,13 +25,13 @@ export const ClinicDigitalProLogo: React.FC<LogoProps> = ({
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="blueDGrad" x1="40" y1="16" x2="100" y2="84" gradientUnits="userSpaceOnUse">
+          <linearGradient id={blueDGradId} x1="40" y1="16" x2="100" y2="84" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#006df0" />
             <stop offset="50%" stopColor="#0551bc" />
             <stop offset="100%" stopColor="#093c90" />
           </linearGradient>
           
-          <linearGradient id="tealCrossGrad" x1="13" y1="34" x2="63" y2="84" gradientUnits="userSpaceOnUse">
+          <linearGradient id={tealCrossGradId} x1="13" y1="34" x2="63" y2="84" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#00f0ff" />
             <stop offset="50%" stopColor="#00ceff" />
             <stop offset="100%" stopColor="#0099ff" />
@@ -53,7 +57,7 @@ export const ClinicDigitalProLogo: React.FC<LogoProps> = ({
              C 74,35 65,29.5 48,29.5 
              H 40 
              Z" 
-          fill="url(#blueDGrad)" 
+          fill={`url(#${blueDGradId})`} 
         />
 
         <path 
@@ -79,7 +83,7 @@ export const ClinicDigitalProLogo: React.FC<LogoProps> = ({
              V 38
              a 4,4 0 0 1 4,-4
              z"
-          fill="url(#tealCrossGrad)"
+          fill={`url(#${tealCrossGradId})`}
         />
       </svg>
 
