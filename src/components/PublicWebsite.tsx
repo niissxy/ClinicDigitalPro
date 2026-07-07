@@ -816,7 +816,7 @@ export default function PublicWebsite({
                     <img 
                       src={clinicDesktopDashboard} 
                       alt="Desktop CRM Dashboard" 
-                      className="w-full h-full object-cover select-none pointer-events-none opacity-95 dark:opacity-40 transition-opacity duration-700"
+                      className="w-full h-full object-cover select-none pointer-events-none opacity-95 dark:opacity-90 transition-opacity duration-700"
                       referrerPolicy="no-referrer"
                     />
 
@@ -933,7 +933,7 @@ export default function PublicWebsite({
                     <img 
                       src={clinicMobileQuiz} 
                       alt="Mobile Diagnostic Skin Quiz" 
-                      className="w-full h-full object-cover select-none pointer-events-none opacity-95 dark:opacity-45 transition-opacity duration-700"
+                      className="w-full h-full object-cover select-none pointer-events-none opacity-95 dark:opacity-90 transition-opacity duration-700"
                       referrerPolicy="no-referrer"
                     />
 
