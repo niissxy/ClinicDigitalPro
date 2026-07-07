@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clinic-digital-pro.vercel.app/sitemap.xml

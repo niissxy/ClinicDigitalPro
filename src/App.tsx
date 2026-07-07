@@ -152,6 +152,67 @@ export default function App() {
     localStorage.setItem('clinic_language', language);
   }, [language]);
 
+  // SEO Metadata Booster Dynamics
+  React.useEffect(() => {
+    let title = "Clinic Digital Pro - Sistem Manajemen Klinik & CRM Estetika Premium";
+    let desc = "Sistem manajemen klinik multi-spesialis & CRM estetika premium. Dilengkapi dengan kuis diagnostik kulit interaktif, rekam medis elektronik (RME) standar Kemenkes, reservasi online instan, dan dashboard analitis real-time.";
+    
+    if (activeTab === 'admin') {
+      title = "CRM Admin Dashboard - Clinic Digital Pro";
+      desc = "Dashboard analitis real-time, manajemen rekam medis elektronik (RME), pelacakan prospek, status kuota kampanye promosi, dan riwayat janji temu pasien.";
+    } else if (activeTab === 'quiz') {
+      title = "Skin Concern Diagnostic Quiz - Clinic Digital Pro";
+      desc = "Deteksi masalah kulit wajah Anda secara instan dan dapatkan rekomendasi perawatan serta skincare medis berstandar FDA secara otomatis.";
+    } else if (activeTab === 'booking') {
+      title = "Reservasi Online Instan - Clinic Digital Pro";
+      desc = "Pesan jadwal konsultasi dan treatment di Clinic Digital Pro secara otomatis. Dapatkan kode QR terenkripsi yang siap di-scan untuk check-in instan.";
+    } else if (activeTab === 'portal') {
+      title = "Patient Clinical Portal - Clinic Digital Pro";
+      desc = "Masuk ke portal klinis pasien aktif Anda untuk melihat rekam medis, rujukan lab, instruksi aftercare pasca-tindakan, dan riwayat kunjungan.";
+    }
+
+    if (language === 'en') {
+      if (activeTab === 'home') {
+        title = "Clinic Digital Pro - Premium Clinic Management System & Aesthetic CRM";
+        desc = "Premium multi-specialty clinic management system & aesthetic CRM. Featuring interactive skin diagnostic quiz, FDA-standard electronic medical records, and real-time analytical dashboards.";
+      } else if (activeTab === 'admin') {
+        title = "CRM Admin Dashboard - Clinic Digital Pro";
+        desc = "Real-time analytics, electronic medical record (EMR) management, CRM lead tracking, promotional campaign quotas, and patient appointment history.";
+      } else if (activeTab === 'quiz') {
+        title = "Skin Concern Diagnostic Quiz - Clinic Digital Pro";
+        desc = "Instantly diagnose your facial skin concerns and receive smart, automated, FDA-standard treatment & skincare recommendations.";
+      } else if (activeTab === 'booking') {
+        title = "Instant Online Booking - Clinic Digital Pro";
+        desc = "Book your consultation and treatment session at Clinic Digital Pro automatically and receive your encrypted QR check-in pass.";
+      } else if (activeTab === 'portal') {
+        title = "Patient Clinical Portal - Clinic Digital Pro";
+        desc = "Access your active patient medical records, lab referrals, post-treatment aftercare guidelines, and appointment history.";
+      }
+    }
+
+    // Apply to DOM
+    document.title = title;
+
+    // Dynamically update/create meta description tag
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', desc);
+
+    // Dynamically update Open Graph description as well
+    let ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) {
+      ogDesc.setAttribute('content', desc);
+    }
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) {
+      ogTitle.setAttribute('content', title);
+    }
+  }, [activeTab, language]);
+
   const toggleDarkMode = () => {
     setIsDarkMode(prev => {
       const next = !prev;
