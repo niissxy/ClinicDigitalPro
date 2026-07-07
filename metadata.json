@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Clinic Digital Pro",
+  "description": "Premium multi-specialty clinic management system with interactive skin concern quiz diagnostic recommendation engine, patient booking wizards with QR code generation, active patient clinical portals, and fully responsive CRM analytical admin dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
