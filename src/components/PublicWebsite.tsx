@@ -66,6 +66,7 @@ export default function PublicWebsite({
   const [selectedDoctorDetail, setSelectedDoctorDetail] = useState<Doctor | null>(null);
   const [faqOpenState, setFaqOpenState] = useState<Record<number, boolean>>({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [selectedBranchIndex, setSelectedBranchIndex] = useState<number>(0);
 
   // Local Video Demo state
   const [demoMode, setDemoMode] = useState<'desktop' | 'mobile'>('desktop');
@@ -1479,17 +1480,31 @@ export default function PublicWebsite({
               {tText("Kunjungi 3 outlet cabang utama Aurora MedBeauty yang didesain estetik, premium, nyaman, ramah disabilitas, dan parkir luas.", language)}
             </p>
  
-            <div className="flex flex-col gap-5">
-              {localizedBranches.map(b => (
-                <div key={b.name} className="border-l-2 border-indigo-500 pl-4 py-1">
-                  <h4 className="text-xs font-extrabold text-slate-900 dark:text-slate-100">{b.name}</h4>
-                  <p className="text-[11px] text-gray-500 dark:text-slate-400 leading-normal mt-0.5">{b.address}</p>
-                  <p className="text-[10px] text-gray-400 dark:text-slate-500 mt-1 font-semibold flex items-center gap-1.5">
-                    <Clock className="h-3 w-3 inline text-slate-400 dark:text-slate-500" />
-                    {tText("Buka:", language)} {b.opening_hours}
-                  </p>
-                </div>
-              ))}
+            <div className="flex flex-col gap-3">
+              {localizedBranches.map((b, idx) => {
+                const isSelected = selectedBranchIndex === idx;
+                return (
+                  <button
+                    key={b.name}
+                    type="button"
+                    onClick={() => setSelectedBranchIndex(idx)}
+                    className={`w-full text-left transition-all duration-300 border-l-4 pl-4 py-3 rounded-r-xl outline-none ${
+                      isSelected
+                        ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/30'
+                        : 'border-slate-200 dark:border-slate-800 hover:border-indigo-300 hover:bg-slate-50/80 dark:hover:bg-slate-800/40'
+                    }`}
+                  >
+                    <h4 className={`text-xs font-extrabold transition-colors ${
+                      isSelected ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-900 dark:text-slate-100'
+                    }`}>{b.name}</h4>
+                    <p className="text-[11px] text-gray-500 dark:text-slate-400 leading-normal mt-1">{b.address}</p>
+                    <p className="text-[10px] text-gray-400 dark:text-slate-500 mt-1.5 font-semibold flex items-center gap-1.5">
+                      <Clock className="h-3 w-3 text-slate-400 dark:text-slate-500" />
+                      {tText("Buka:", language)} {b.opening_hours}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
           </div>
  
@@ -1501,16 +1516,39 @@ export default function PublicWebsite({
           </div>
         </div>
  
-        {/* Mocking responsive interactive Google Maps visual frame */}
-        <div className="lg:col-span-3 bg-slate-100 dark:bg-slate-950/40 rounded-2xl overflow-hidden min-h-[300px] border border-gray-200 dark:border-slate-800 flex items-center justify-center relative shadow-sm">
-          <div className="absolute inset-0 select-none pointer-events-none opacity-40">
-            <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px]" />
+        {/* Real Interactive Google Maps embed with branch details */}
+        <div className="lg:col-span-3 bg-slate-50 dark:bg-slate-950 rounded-2xl overflow-hidden min-h-[380px] border border-gray-200 dark:border-slate-800 flex flex-col relative shadow-sm transition-all duration-300">
+          <div className="p-4 bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 z-10">
+            <div>
+              <span className="text-[9px] font-mono bg-indigo-600 text-white px-2 py-0.5 rounded-full font-bold inline-block mb-1">
+                {tText("MAPS LIVE", language)}
+              </span>
+              <h4 className="text-xs font-black text-slate-950 dark:text-slate-50">
+                {localizedBranches[selectedBranchIndex]?.name}
+              </h4>
+              <p className="text-[10px] text-gray-500 dark:text-slate-400 font-normal truncate max-w-xs sm:max-w-md">
+                {localizedBranches[selectedBranchIndex]?.address}
+              </p>
+            </div>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((localizedBranches[selectedBranchIndex]?.name || '') + ' ' + (localizedBranches[selectedBranchIndex]?.address || ''))}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[10px] font-black text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-lg shadow-sm transition whitespace-nowrap self-start sm:self-center"
+            >
+              <MapPin className="h-3.5 w-3.5 shrink-0" />
+              {tText("Petunjuk Arah", language)}
+            </a>
           </div>
-          <div className="text-center p-8 relative z-10">
-            <MapPin className="h-10 w-10 text-indigo-600 animate-bounce mx-auto mb-3" />
-            <span className="text-xs font-mono bg-indigo-600 text-white px-2.5 py-1 rounded-full font-bold mb-1.5 inline-block">{tText("Interactive Maps Simulation", language)}</span>
-            <h4 className="text-xs font-extrabold text-slate-800 dark:text-slate-200">{tText("Senopati, Bandung Riau, & Sungkono Surabaya Center", language)}</h4>
-            <p className="text-[10px] text-gray-400 dark:text-slate-500 mt-1">{tText("Sistem rute koordinat terintegrasi langsung dengan GPS Maps API untuk navigasi instan di handphone pasien.", language)}</p>
+
+          <div className="flex-1 relative w-full min-h-[320px] h-full">
+            <iframe
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(localizedBranches[selectedBranchIndex]?.address || '')}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+              className="absolute inset-0 w-full h-full border-0 dark:opacity-90"
+              allowFullScreen
+              loading="lazy"
+              title={localizedBranches[selectedBranchIndex]?.name}
+            />
           </div>
         </div>
         </div>
